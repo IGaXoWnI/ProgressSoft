@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class FxDealService {
@@ -16,6 +18,7 @@ public class FxDealService {
     @Autowired
     private FxDealRepository repository;
     
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public FxDeal saveDeal(FxDealRequest request) {
         log.info("Processing deal: {}", request.getDealUniqueId());
         
