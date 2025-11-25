@@ -26,7 +26,6 @@ public class FxDealController {
             log.info("Processing new FX deal with id: {}", dealRequest.getDealUniqueId());
             
             FxDeal deal = fxDealService.saveDeal(dealRequest);
-            
             log.info("FX deal imported successfully: {}", deal.getDealUniqueId());
             return ResponseEntity.ok("Deal imported successfully with id: " + deal.getDealUniqueId());
             
