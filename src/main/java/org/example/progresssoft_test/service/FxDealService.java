@@ -11,16 +11,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class FxDealService {
     
-    private static final Logger logger = LoggerFactory.getLogger(FxDealService.class);
+    private static final Logger log = LoggerFactory.getLogger(FxDealService.class);
     
     @Autowired
     private FxDealRepository repository;
     
     public FxDeal saveDeal(FxDealRequest request) {
-        logger.info("Processing deal: {}", request.getDealUniqueId());
+        log.info("Processing deal: {}", request.getDealUniqueId());
         
         if (repository.existsByDealUniqueId(request.getDealUniqueId())) {
-            logger.warn("Duplicate deal detected: {}", request.getDealUniqueId());
+            log.warn("Duplicate deal detected: {}", request.getDealUniqueId());
             throw new RuntimeException("Deal already exists: " + request.getDealUniqueId());
         }
         
@@ -33,7 +33,7 @@ public class FxDealService {
         );
         
         FxDeal saved = repository.save(deal);
-        logger.info("Deal saved successfully: {}", saved.getDealUniqueId());
+        log.info("Deal saved successfully: {}", saved.getDealUniqueId());
         return saved;
     }
 }
